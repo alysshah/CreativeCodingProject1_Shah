@@ -26,12 +26,21 @@ function draw() {
   fill(20);
   quad(210,120,290,120,290,260,210,260);
 
-
+  //light beam
+  fill(255,255,0,40);
+  noStroke();
+  ellipse(mouseX,mouseY,200,200)
+  ellipse(mouseX,mouseY,150,150)
+  
+  stroke(1);
+  
+  push();
   translate(width-20, height-20);
   let a = atan2(mouseY - height, mouseX - width);
   rotate(a);
   scale(2);
   flashlight();
+  pop();
 }
 
 function flashlight(){
