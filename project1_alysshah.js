@@ -5,6 +5,8 @@ let wallFill = 140;
 let ceilingFill = 100;
 let floorFill = 190;
 
+let arrayY = [50,100,150,200,250,300,350,400,450,500];
+
 
 
 function setup() {
@@ -15,14 +17,16 @@ function setup() {
 
 function draw() {
 
+  noCursor();
+
   stroke(1);
   let speed = abs(mouseX - pmouseX) + abs(mouseY - pmouseY);
   
-  if (frameCount < 100){
+  if (frameCount < 200){
     environment();
   }
   
-  else if(frameCount<150){
+  else if(frameCount<250){
     if (frameCount%4 == 0){
       wallFill = 70;
       ceilingFill = 50;
@@ -33,19 +37,26 @@ function draw() {
       floorFill = 190;        
     }
     environment();
+    for (let i = 0; i < 10; i++) {
+      noStroke();
+      fill(0,0,0,30)
+      rect(i, arrayY[i], width, 10);
+      arrayY[i]+=15;
+      if (arrayY[i] > height) {
+        arrayY[i] = 0;
+      }
+    }
     flashlight(200);
   }
   
-  else if(frameCount< 250){
+  else if(frameCount< 350){
     lightOn();
   }
 
-  else if(252<frameCount){
+  else if(351<frameCount){
     lightOff();
     if (speed > 70){
-      for (let i = millis(); i < millis()+waitTime; i++){
-        lightOn();
-      }
+      lightOn();
     }
   }
 
