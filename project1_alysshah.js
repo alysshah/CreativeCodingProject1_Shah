@@ -1,35 +1,16 @@
-//let initialTime = 0;
-//let waitTime = 3000;
+let initialTime = 0;
+let waitTime = 3000;
 
 let wallFill = 140;
 let ceilingFill = 100;
 let floorFill = 190;
 
-//let clickCount = 0;
 
 
 function setup() {
     createCanvas(500, 500);
 }
 
-
-/*
-function mousePressed(){
-  
-  clickCount++;
-  print(clickCount);
-  
-  if (clickCount == 6){
-    clickCount = 0;
-    lightBeam();
-      if (millis()-initalTime > waitTime) {
-        initialTime = millis();
-        environment();
-        flashlight();
-  } 
-  }
-}
-*/
 
 
 function draw() {
@@ -62,11 +43,14 @@ function draw() {
   else if(252<frameCount){
     lightOff();
     if (speed > 70){
-      lightOn();
+      for (let i = millis(); i < millis()+waitTime; i++){
+        lightOn();
+      }
     }
   }
 
 }
+
 
 function lightOn(){
   wallFill = 90;
@@ -92,6 +76,7 @@ function lightOff(){
 
 
 function flashlight(color){
+  stroke(1);
   push();
   translate(width-30, height-30);
   let a = atan2(mouseY - height, mouseX - width);
@@ -108,12 +93,6 @@ function flashlight(color){
 function lightBeam(){
   fill(255,255,0,20);
   noStroke();
-  /* tried to restrict where the beam could be to make it more realistic, but since the flashlight would sometimes not point in the same direction of the beam, i decided to comment it out 
-  let x1 = map(mouseX, 0, width, 170, 330);
-  let x2 = map(mouseY, 0, height, 150, 350);
-  ellipse(x1,x2,180,180)
-  ellipse(x1,x2,130,130)    
-  */
   ellipse(mouseX,mouseY,180,180)
   ellipse(mouseX,mouseY,130,130)      
 }
