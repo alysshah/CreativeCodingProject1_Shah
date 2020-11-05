@@ -11,7 +11,10 @@ let array = [50,100,150,200,250,300,350,400,450,500];
 
 
 function setup() {
-    createCanvas(500, 500);
+  createCanvas(500, 500);
+
+  b1 = color(255);
+  b2 = color(0);
 }
 
 
