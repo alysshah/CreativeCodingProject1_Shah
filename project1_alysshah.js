@@ -1,3 +1,7 @@
+const Y_AXIS = 1;
+const X_AXIS = 2;
+let b1, b2, c1, c2;
+
 let wallFill = 140;
 let ceilingFill = 100;
 let floorFill = 190;
@@ -33,7 +37,7 @@ function draw() {
       ceilingFill = 100;
       floorFill = 190;        
     }
-    environment();
+    scene1();
     for (let i = 0; i < 10; i++) {
       noStroke();
       fill(0,0,0,30)
@@ -227,6 +231,8 @@ function environment(){
 
   //walls
   background(wallFill);
+  setGradient(0, 0, width / 2, height, color(wallFill), color(50), X_AXIS);
+  setGradient(width / 2, 0, width / 2, height, color(50), color(wallFill), X_AXIS);
 
   //floor
   fill(floorFill);
