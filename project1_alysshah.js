@@ -1,6 +1,3 @@
-let initialTime = 0;
-let waitTime = 3000;
-
 let wallFill = 140;
 let ceilingFill = 100;
 let floorFill = 190;
@@ -23,63 +20,7 @@ function draw() {
   let speed = abs(mouseX - pmouseX) + abs(mouseY - pmouseY);
   
   if (frameCount < 150){
-    environment();
-    //frame1
-    stroke(117, 97, 66);
-    strokeWeight(5);
-    fill(152, 122, 161);
-    beginShape();
-      vertex(50,150);
-      vertex(100,160);
-      vertex(100,220);
-      vertex(50,230);
-      vertex(50,150);
-    endShape();
-
-    //frame2
-    stroke(117, 97, 66);
-    strokeWeight(6);
-    fill(140, 189, 176);
-    beginShape();
-      vertex(350,130);
-      vertex(430,110);
-      vertex(430,190);
-      vertex(350,190);
-      vertex(350,130);
-    endShape();
-
-    //plant
-    strokeWeight(1);
-    stroke(0);
-    fill(255,0,0);
-    rect(140,270,30,70);
-    beginShape();
-      vertex(170,270);
-      vertex(180,260);
-      vertex(180,330);
-      vertex(170,340);
-    endShape();
-    fill(25, 120, 50);
-    beginShape();
-      vertex(140,270);
-      vertex(130,255);
-      vertex(117,263);
-      vertex(127,247);
-      vertex(146,256);
-      vertex(134,219);
-      vertex(154,254);
-      vertex(150,233);
-      vertex(154,209);
-      vertex(160,240);
-      vertex(169,216);
-      vertex(168,234);
-      vertex(163,256);
-      vertex(176,244);
-      vertex(191,235);
-      vertex(180,260);
-      vertex(170,270);
-      vertex(140,270);
-    endShape();
+    scene1();
   }
   
   else if(frameCount<250){
@@ -215,6 +156,67 @@ function lightBeam(){
   noStroke();
   ellipse(mouseX,mouseY,180,180)
   ellipse(mouseX,mouseY,130,130)      
+}
+
+
+function scene1(){
+  environment();
+  //frame1
+  stroke(117, 97, 66);
+  strokeWeight(5);
+  fill(152, 122, 161);
+  beginShape();
+    vertex(50,150);
+    vertex(100,160);
+    vertex(100,220);
+    vertex(50,230);
+    vertex(50,150);
+  endShape();
+
+  //frame2
+  stroke(117, 97, 66);
+  strokeWeight(6);
+  fill(140, 189, 176);
+  beginShape();
+    vertex(350,130);
+    vertex(430,110);
+    vertex(430,190);
+    vertex(350,190);
+    vertex(350,130);
+  endShape();
+
+  //plant
+  strokeWeight(1);
+  stroke(0);
+  fill(255,0,0);
+  rect(140,270,30,70);
+  beginShape();
+    vertex(170,270);
+    vertex(180,260);
+    vertex(180,330);
+    vertex(170,340);
+  endShape();
+  fill(25, 120, 50);
+  beginShape();
+    vertex(140,270);
+    vertex(130,255);
+    vertex(117,263);
+    vertex(127,247);
+    vertex(146,256);
+    vertex(134,219);
+    vertex(154,254);
+    vertex(150,233);
+    vertex(154,209);
+    vertex(160,240);
+    vertex(169,216);
+    vertex(168,234);
+    vertex(163,256);
+    vertex(176,244);
+    vertex(191,235);
+    vertex(180,260);
+    vertex(170,270);
+    vertex(140,270);
+  endShape();
 }
 
 
