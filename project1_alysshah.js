@@ -1,6 +1,4 @@
-const Y_AXIS = 1;
-const X_AXIS = 2;
-let b1, b2, c1, c2;
+let b1, b2;
 
 let wallFill = 140;
 let ceilingFill = 100;
@@ -13,8 +11,8 @@ let array = [50,100,150,200,250,300,350,400,450,500];
 function setup() {
   createCanvas(500, 500);
 
-  b1 = color(255);
-  b2 = color(0);
+  b1 = color(50);
+  b2 = color(wallFill);
 }
 
 
@@ -144,7 +142,8 @@ function lightOff(){
 
 
 function flashlight(color){
-  stroke(1);
+  stroke(0);
+  strokeWeight(1);
   push();
   translate(width-30, height-30);
   let a = atan2(mouseY - height, mouseX - width);
@@ -234,8 +233,8 @@ function environment(){
 
   //walls
   background(wallFill);
-  setGradient(0, 0, width / 2, height, color(wallFill), color(50), X_AXIS);
-  setGradient(width / 2, 0, width / 2, height, color(50), color(wallFill), X_AXIS);
+  setGradient(0, 0, width / 2, height, b2, b1);
+  setGradient(width / 2, 0, width / 2, height, b1, b2);
 
   //floor
   fill(floorFill);
@@ -321,3 +320,17 @@ function endJumpscare(){ //added a jumpscare because it was recommended during m
   vertex(250,450);
   endShape();
 }
+
+
+function setGradient(x, y, w, h, b1, b2) {
+  noFill();
+  // Left to right gradient
+  for (let i = x; i <= x + w; i++) {
+    let inter = map(i, x, x + w, 0, 1);
+    let c = lerpColor(b1, b2, inter);
+    stroke(c);
+    line(i, y, i, y + h);
+  }
+}
+
+
