@@ -1,11 +1,10 @@
-let b1, b2;
+let b1, b2; //both extremes of the gradients used for the walls
 
-let wallFill = 140;
-let ceilingFill = 100;
-let floorFill = 190;
+let wallFill = 140; //color of the walls
+let ceilingFill = 100; //color of the ceiling
+let floorFill = 190; //color of the floor
 
-let array = [50,100,150,200,250,300,350,400,450,500];
-
+let array = [50,100,150,200,250,300,350,400,450,500]; //
 
 
 function setup() {
@@ -19,17 +18,17 @@ function setup() {
 
 function draw() {
 
-  noCursor();
+  noCursor(); //remove cursor from view to be able to just see the flashlight's beam
 
   stroke(1);
-  let speed = abs(mouseX - pmouseX) + abs(mouseY - pmouseY);
+  //let speed = abs(mouseX - pmouseX) + abs(mouseY - pmouseY); used before to detect when the mouse was moving at a certain speed, replaced with "animations" for different framerates
   
   if (frameCount < 150){
-    scene1();
+    scene1(); //original scene
   }
   
   else if(frameCount<250){
-    if (frameCount%4 == 0){
+    if (frameCount%4 == 0){ //makes the blinking effects to show the lights are failing, transitions to darkness
       wallFill = 20;
       ceilingFill = 10;
       floorFill = 50;
@@ -61,7 +60,7 @@ function draw() {
       push();
       translate(220,160);
       scale(0.2);
-      figure();
+      figure(); //figure appears small at fist, translated to be more or less centered
       pop();
     }else{
       lightOff();
@@ -78,7 +77,7 @@ function draw() {
       push();
       translate(170,140);
       scale(0.5);
-      figure();
+      figure(); //figure gets bigger (and therefore closer)
       pop();
     }else{
       lightOff();
@@ -95,7 +94,7 @@ function draw() {
       push();
       translate(90,90);
       scale(1);
-      figure();
+      figure(); //figure gets even closer
       pop();
     }else{
       lightOff();
@@ -107,18 +106,18 @@ function draw() {
   }
   
   else if(frameCount<915){
-    endJumpscare();
+    endJumpscare(); //quick jumpscare because it was recommended that i add one during my presentation
   }
   
-  else if(915<frameCount){
-    fill(0);
+  else if(915<frameCount){ 
+    fill(0); //screen becomes black
     rect(0,0,500,500);
   } 
 
 }
 
 
-function lightOn(){
+function lightOn(){ //with flashlight on
   wallFill = 90;
   ceilingFill = 60;
   floorFill = 120;    
@@ -130,7 +129,7 @@ function lightOn(){
 }
 
 
-function lightOff(){
+function lightOff(){ //with flashlight off
   wallFill = 70;
   ceilingFill = 40;
   floorFill = 100;    
@@ -141,12 +140,13 @@ function lightOff(){
 }
 
 
-function flashlight(color){
+function flashlight(color){ //flashlight code
   stroke(0);
   strokeWeight(1);
   push();
-  translate(width-30, height-30);
-  let a = atan2(mouseY - height, mouseX - width);
+  translate(width-30, height-30); //in bottom right side of screen
+  //follows the mouse by pointing towards it but without moving:
+  let a = atan2(mouseY - height, mouseX - width); 
   rotate(a);
   scale(2);
   fill(color, 0, 0)
@@ -165,8 +165,11 @@ function lightBeam(){
 }
 
 
-function scene1(){
+function scene1(){  //origianl scene before the lights turn off
   environment();
+
+  //i was told during the presetation that i should add elements (i choose two frames and a plant) in the surroundings that would disapear when the lights went off to accentuate the effect of darkness
+
   //frame1
   stroke(117, 97, 66);
   strokeWeight(5);
@@ -233,7 +236,8 @@ function environment(){
 
   //walls
   background(wallFill);
-  setGradient(0, 0, width / 2, height, b2, b1);
+  //two linear gradients are present in the background (on the walls) to give a better sense of depth
+  setGradient(0, 0, width / 2, height, b2, b1); 
   setGradient(width / 2, 0, width / 2, height, b1, b2);
 
   //floor
@@ -257,7 +261,7 @@ function environment(){
 }
 
 
-function figure(){
+function figure(){  //figure leading up to the jumpscare
   noStroke();
   fill (20);
   beginShape();
@@ -321,13 +325,13 @@ function endJumpscare(){ //added a jumpscare because it was recommended during m
   endShape();
 }
 
-
+//making a graident was also recommended to me
 function setGradient(x, y, w, h, b1, b2) {
   noFill();
-  // Left to right gradient
+  // gradient goes left to right
   for (let i = x; i <= x + w; i++) {
     let inter = map(i, x, x + w, 0, 1);
-    let c = lerpColor(b1, b2, inter);
+    let c = lerpColor(b1, b2, inter); //the two colors on each extreme are b1 and b2
     stroke(c);
     line(i, y, i, y + h);
   }
